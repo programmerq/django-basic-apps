@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import patterns, include
 
 
-urlpatterns=patterns(
+urlpatterns = patterns(
     (r'blog/', include('basic.blog.urls')),
     (r'bookmarks/', include('basic.bookmarks.urls')),
     (r'books/', include('basic.books.urls')),
@@ -10,7 +10,8 @@ urlpatterns=patterns(
     (r'flagging/', include('basic.flagging.urls')),
     (r'groups/', include('basic.groups.urls', namespace='groups')),
     #(r'inlines/', include('basic.inlines.urls')),
-    (r'invitations/', include('basic.invitations.urls', namespace='invitations')),
+    (r'invitations/', include('basic.invitations.urls',
+                              namespace='invitations')),
     (r'photos/', include('basic.media.urls.photos')),
     (r'videos/', include('basic.media.urls.videos')),
     (r'messages/', include('basic.messages.urls', namespace='messages')),
