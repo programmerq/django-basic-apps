@@ -10,7 +10,7 @@ class InvitationTestCase(TestCase):
 
     def setUp(self):
         self.user = User.objects.get(username='nathanb')
-        self.client.login(username=self.user.username, password='n')
+        self.assertTrue(self.client.login(username=self.user.username, password='n'), msg="Please ensure that django.contrib.sessions is in INSTALLED_APPS")
 
     def test_invitations(self):
         response = self.client.get(reverse('invitations:create'))

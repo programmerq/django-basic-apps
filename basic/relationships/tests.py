@@ -13,7 +13,7 @@ class RelationshipTestCase(TestCase):
         self.user2 = User.objects.get(username='laurah')
 
     def test_follow(self):
-        self.client.login(username=self.user1.username, password='n')
+        self.assertTrue(self.client.login(username=self.user1.username, password='n'), msg="Please ensure that django.contrib.sessions is in INSTALLED_APPS")
 
         kwargs = {'username': self.user2.username}
 
@@ -35,7 +35,7 @@ class RelationshipTestCase(TestCase):
         self.assertEqual(len(fans), 1)
 
     def test_block(self):
-        self.client.login(username=self.user1.username, password='n')
+        self.assertTrue(self.client.login(username=self.user1.username, password='n'), msg="Please ensure that django.contrib.sessions is in INSTALLED_APPS")
 
         kwargs = {'username': self.user2.username}
 
@@ -51,7 +51,7 @@ class RelationshipTestCase(TestCase):
         self.assertEqual(len(blocked), 1)
 
         # Login as different user
-        self.client.login(username=self.user2.username, password='l')
+        self.assertTrue(self.client.login(username=self.user2.username, password='l'), msg="Please ensure that django.contrib.sessions is in INSTALLED_APPS")
 
         # POST request saves relationship
         response = self.client.post(reverse('relationship_follow', kwargs={'username': self.user1.username}))

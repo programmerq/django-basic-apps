@@ -16,7 +16,7 @@ class FlaggingTestCase(TestCase):
         self.friend = User.objects.get(username='laurah')
 
     def test_flagging(self):
-        self.client.login(username=self.user.username, password='n')
+        self.assertTrue(self.client.login(username=self.user.username, password='n'), msg="Please ensure that django.contrib.sessions is in INSTALLED_APPS")
 
         kwargs = {
             'slug': self.flag_type.slug,

@@ -13,7 +13,7 @@ class MessageTestCase(TestCase):
         self.user2 = User.objects.get(username='laurah')
         
     def test_messages(self):
-        self.client.login(username=self.user1.username, password='n')
+        self.assertTrue(self.client.login(username=self.user1.username, password='n'), msg="Please ensure that django.contrib.sessions is in INSTALLED_APPS")
         
         response = self.client.get(reverse('messages:messages'))
         self.assertEqual(response.status_code, 200)
@@ -34,7 +34,7 @@ class MessageTestCase(TestCase):
         self.assertEqual(str(response.context[0]['message_list']), '[<Message: Message from nathanb>]')
         self.assertEqual(str(response.context[0]['mailbox']), 'sent')
         
-        self.client.login(username=self.user2.username, password='l')
+        self.assertTrue(self.client.login(username=self.user2.username, password='l'), msg="Please ensure that django.contrib.sessions is in INSTALLED_APPS")
         
         response = self.client.get(reverse('messages:messages'))
         self.assertEqual(response.status_code, 200)

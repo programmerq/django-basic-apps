@@ -18,7 +18,7 @@ class GroupTestCase(TestCase):
         self.message = GroupMessage.objects.get(pk=1)
         self.page = GroupPage.objects.get(pk=1)
 
-        self.client.login(username=self.user1.username, password='n')
+        self.assertTrue(self.client.login(username=self.user1.username, password='n'), msg="Please ensure that django.contrib.sessions is in INSTALLED_APPS")
 
     def test_groups(self):
         group_args = [self.group.slug]
